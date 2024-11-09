@@ -1,0 +1,39 @@
+Prompt: "Fetch me candidates with experience in aviation and speak Spanish."
+
+Prompt: "Find candidates with a background in finance and certification in CPA."
+
+Prompt: "Retrieve resumes of project managers who have worked in IT."
+
+Prompt: "Search for candidates who have expertise in blockchain technology."
+
+Prompt: "Fetch resumes of candidates with doctoral degrees in Physics."
+
+Prompt: "Locate candidates with over 10 years of experience in retail management."
+
+Prompt: "Get me resumes of candidates who are proficient in Adobe Creative Suite."
+
+Prompt: "Search for candidates who have experience with AWS and are certified solutions architects."
+
+Prompt: "Find candidates who have taught English abroad and are TEFL certified."
+
+Prompt: "Retrieve resumes of engineers with experience in the automotive industry."
+
+Prompt: "Fetch candidates with experience in non-profit leadership and grant writing."
+
+Prompt: "Locate candidates who are fluent in Mandarin and have international business experience."
+
+Prompt: "Get me resumes from candidates who have experience in cybersecurity and hold a CISSP certification."
+
+Prompt: "Find candidates with a master’s degree in data science and experience in big data platforms."
+
+Prompt: "Search for sales professionals with over 5 years of experience in pharmaceuticals."
+
+Prompt: "Retrieve resumes of candidates with veterinary experience and a DVM degree."
+
+Prompt: "Fetch candidates who have worked in digital marketing and have SEO expertise."
+
+Prompt: "Find candidates with experience in renewable energy and a degree in environmental science."
+
+Prompt: "Locate graphic designers with experience in user interface design."
+
+Prompt: "Search for mechanical engineers with experience in 3D modeling software."

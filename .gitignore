@@ -1,0 +1,7 @@
+Vector-DB/
+Dataset/
+*.zip
+.ipynb_checkpoints/
+prompts.txt
+.env
+__pycache__/

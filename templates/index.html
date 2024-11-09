@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Searcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004494;
+        }
+        .result {
+            background: #eee;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto; /* Enables vertical scrolling */
+        }
+        .resume {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .heading {
+            font-weight: bold;
+            color: #333;
+        }
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            display: none; /* Hidden by default */
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume Searcher</h1>
+        <form id="searchForm">
+            <label for="prompt">Enter Query:</label>
+            <textarea id="prompt" name="prompt" rows="4" placeholder="Type your query here..."></textarea>
+            <label for="modelSelect">Choose Model:</label>
+            <select id="modelSelect" name="model">
+                <option value="gpt-3.5">GPT-3.5 Turbo</option>
+                <option value="gpt-4">GPT-4 Turbo</option>
+                <option value="haiku">Claude Haiku</option>
+                <option value="sonnet">Claude Sonnet</option>
+                <option value="opus">Claude Opus</option>
+                <!-- Add other models as needed -->
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <div class="loader" id="loader"></div>
+        <div id="results" class="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').onsubmit = function(event) {
+            event.preventDefault();
+            const prompt = document.getElementById('prompt').value;
+            const model = document.getElementById('modelSelect').value; // Get selected model
+            const loader = document.getElementById('loader');
+            const resultsContainer = document.getElementById('results');
+
+            loader.style.display = 'block'; // Show loader
+            resultsContainer.style.display = "none";
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({prompt: prompt, model: model})
+            }).then(response => response.json())
+            .then(data => {
+                loader.style.display = 'none'; // Hide loader
+                resultsContainer.style.display = "block";
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach((resume) => {
+                        const resumeDiv = document.createElement('div');
+                        resumeDiv.className = 'resume';
+                        resumeDiv.innerHTML = `
+                            <div><span class="heading">Name:</span> ${resume.name}</div>
+                            <div><span class="heading">Contact Info:</span> ${resume.contact_info}</div>
+                            <div><span class="heading">Experience:</span> ${resume.experience}</div>
+                            <div><span class="heading">Education:</span> ${resume.education}</div>
+                            <div><span class="heading">Background:</span> ${resume.background}</div>
+                            <div><span class="heading">Skills:</span> ${resume.skills}</div>
+                            <div><span class="heading">Additional Details:</span> ${resume.additional_details}</div>
+                            <div><span class="heading">Source:</span> <a href="/resumes/${resume.category}/${resume.source}" target="_blank">View Resume</a></div>
+                        `;
+                        resultsContainer.appendChild(resumeDiv);
+                    });
+                } else {
+                    resultsContainer.textContent = 'No results found';
+                }
+            }).catch(error => {
+                loader.style.display = 'none'; // Hide loader
+                resultsContainer.style.display = "block";
+                resultsContainer.textContent = 'Error: ' + error.toString();
+            });
+        };
+    </script>
+</body>
+</html>

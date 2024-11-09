@@ -1,0 +1,8 @@
+langchain
+langchain-openai==0.0.6
+langchain-anthropic==0.1.11
+langchain-aws==0.1.2
+chromadb
+tiktoken
+python-dotenv
+flask
