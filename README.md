@@ -2,7 +2,7 @@
 
 This repository contains the code and resources for the research project titled **Retrieval Augmented Generation (RAG) for Resume Search and Summarization**. This project demonstrates a cutting-edge solution for improving resume retrieval and summarization using advanced natural language processing techniques, blending semantic search with large language models.
 
-The research paper can be found at: [Research Paper](https://drive.google.com/file/d/1WHLwXt19eklPeDi5c8rfNA2M0Mkuirz_/view)
+The research paper can be found at: [Research Paper](https://drive.google.com/file/d/1ESdYXaW0Omlf4oGAesBzpQ3ZPQk5-7Fn/view)
 
 ## Overview
 
